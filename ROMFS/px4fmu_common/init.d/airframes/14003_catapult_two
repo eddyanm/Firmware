@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# @name Catapult Two
+#
+# @type Standard VTOL
+# @class VTOL
+#
+# @maintainer Eddy Lin
+#
+# @output MAIN1 front motor
+# @output MAIN2 left rear motor
+# @output MAIN3 right rear motor
+# @output MAIN4 left tilt servo
+# @output MAIN5 right tilt servo
+#
+
+sh /etc/init.d/rc.vtol_defaults
+
+if [ $AUTOCNF = yes ]
+then
+	param set PWM_RATE 400
+
+	param set VT_TYPE 1
+	param set VT_MOT_COUNT 3
+	param set VT_FW_MOT_OFFID 1
+fi
+
+set MAV_TYPE 21
+
+set MIXER catapult_two
+
+set PWM_OUT 12345
