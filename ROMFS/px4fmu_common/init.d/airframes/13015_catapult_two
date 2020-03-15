@@ -2,7 +2,7 @@
 #
 # @name Catapult Two
 #
-# @type Standard VTOL
+# @type VTOL Tiltrotor
 # @class VTOL
 #
 # @maintainer Eddy Lin
@@ -22,6 +22,7 @@ then
 
 	param set VT_TYPE 1
 	param set VT_MOT_COUNT 3
+	param set VT_MOT_ID 123
 	param set VT_FW_MOT_OFFID 1
 fi
 
