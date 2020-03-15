@@ -46,7 +46,9 @@ SRC_DIR=$PWD/../
 CCACHE_DIR=${HOME}/.ccache
 mkdir -p "${CCACHE_DIR}"
 
-docker run -it --rm -w "${SRC_DIR}" \
+xhost +
+
+docker run -it --privileged --rm -w "${SRC_DIR}" \
 	--env=AWS_ACCESS_KEY_ID \
 	--env=AWS_SECRET_ACCESS_KEY \
 	--env=BRANCH_NAME \
@@ -61,6 +63,9 @@ docker run -it --rm -w "${SRC_DIR}" \
 	--env=PX4_UBSAN \
 	--env=TRAVIS_BRANCH \
 	--env=TRAVIS_BUILD_ID \
+	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+	-e DISPLAY=:10.0 \
+	--network host \
 	--publish 14556:14556/udp \
 	--volume=${CCACHE_DIR}:${CCACHE_DIR}:rw \
 	--volume=${SRC_DIR}:${SRC_DIR}:rw \
