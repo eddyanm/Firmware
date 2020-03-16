@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# @name Catapult Two
+#
+# @type Tricopter Reverse
+# @class Copter
+#
+# @maintainer Eddy Lin
+#
+# @output MAIN1 front motor
+# @output MAIN2 left rear motor
+# @output MAIN3 right rear motor
+# @output MAIN4 left tilt servo
+# @output MAIN5 right tilt servo
+#
+
+sh /etc/init.d/rc.mc_defaults
+
+if [ $AUTOCNF = yes ]
+then
+	param set PWM_RATE 400
+
+fi
+
+set MAV_TYPE 15
+
+set MIXER catapult_two
+
+set PWM_OUT 12345678
