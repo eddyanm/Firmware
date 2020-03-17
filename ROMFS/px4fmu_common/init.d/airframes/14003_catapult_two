@@ -20,10 +20,6 @@ if [ $AUTOCNF = yes ]
 then
 	param set PWM_RATE 400
 
-	param set BAT_ADC_CHANNEL 2
-	param set BAT_N_CELLS 4
-	param set BAT_V_DIV 11.68211651
-
 fi
 
 set MAV_TYPE 15
