@@ -102,6 +102,7 @@ output_limit_t     _pwm_limit;
 
 // esc parameters
 int32_t _pwm_disarmed;
+int32_t _pwm_main_dis[8];  // 8 disarmed PWM settings
 int32_t _pwm_min;
 int32_t _pwm_max;
 
@@ -355,6 +356,10 @@ void task_main(int argc, char *argv[])
 				max_pwm[i] = _pwm_max;
 			}
 
+			for (int i = 0; i < _max_num_outputs; i++) {
+				disarmed_pwm[i] = _pwm_main_dis[i];  //set individual PWM disarm settings
+			}
+
 			uint16_t pwm[actuator_outputs_s::NUM_ACTUATOR_OUTPUTS];
 
 			// TODO FIXME: pre-armed seems broken
@@ -556,6 +561,14 @@ int linux_pwm_out_main(int argc, char *argv[])
 
 	/** gets the parameters for the esc's pwm */
 	param_get(param_find("PWM_DISARMED"), &linux_pwm_out::_pwm_disarmed);
+	param_get(param_find("PWM_MAIN_DIS1"), &linux_pwm_out::_pwm_main_dis[0]);
+	param_get(param_find("PWM_MAIN_DIS2"), &linux_pwm_out::_pwm_main_dis[1]);
+	param_get(param_find("PWM_MAIN_DIS3"), &linux_pwm_out::_pwm_main_dis[2]);
+	param_get(param_find("PWM_MAIN_DIS4"), &linux_pwm_out::_pwm_main_dis[3]);
+	param_get(param_find("PWM_MAIN_DIS5"), &linux_pwm_out::_pwm_main_dis[4]);
+	param_get(param_find("PWM_MAIN_DIS6"), &linux_pwm_out::_pwm_main_dis[5]);
+	param_get(param_find("PWM_MAIN_DIS7"), &linux_pwm_out::_pwm_main_dis[6]);
+	param_get(param_find("PWM_MAIN_DIS8"), &linux_pwm_out::_pwm_main_dis[7]);
 	param_get(param_find("PWM_MIN"), &linux_pwm_out::_pwm_min);
 	param_get(param_find("PWM_MAX"), &linux_pwm_out::_pwm_max);
 
